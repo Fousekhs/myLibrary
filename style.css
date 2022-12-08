@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
+
+:root {
+    --background: #EEEEEE;
+    --black: #181818;
+    --purple: #BB86FC;
+    --dark-grey: #6D6D64;
+    --background-grey: rgba(109, 109, 99, 0.5);
+    --shadow-grey: #CCCCCC;
+    --dark-amber: #78350F;
+    --light-blue: #60A5FA;
+    --light-green: #86EFAC;
+    --green: #16A34A;
+    --light-red: #FB7185;
+    --red: #BE123C;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+body {
+    background-color: var(--background);
+    height: 100%;
+    display: grid;
+    grid-template: 10vh 1fr / 1fr;
+}
+
+header {
+    background-color: white;
+    box-shadow: 5 0 10 var(--shadow-grey);
+    border-bottom: 1px solid black;
+    display: grid;
+    align-items: center;
+    grid-template: 1fr / 60vw 1fr;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 10vh;
+}
+
+.form-container {
+    position: absolute;
+    background-color: var(--background-grey);
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    transform: scale(0);
+    transition: none;
+    z-index: 2000;
+}
+
+.form-container[data-shown="false"] {
+    transform: scale(0);
+    transition: none;
+}
+
+.form-container[data-shown="true"] {
+    transform: scale(100%);
+    transition: none;
+}
+
+.form-container[data-shown="true"] form {
+    transform: scale(100%); 
+    transition: transform 1s;
+}
+
+
+form {
+    transform: scale(0%);
+    display: grid;
+    grid-template: repeat(6, 1fr) / repeat(2, 1fr);
+    padding: 1.5rem;
+    border-radius: 15px;
+    background-color: white;
+    align-items: center;
+    font-size: 1.2rem;
+    row-gap: 1.2rem;
+}
+
+form[data-year="false"] #year {
+    outline: 1.5px solid red;
+}
+
+form input[type="text"],
+form input[type="number"] {
+    border-radius: 8px;
+    padding-left: 0.8rem;
+    border: none;
+    outline: 1px solid grey;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus {
+    outline: 1.5px solid black;
+}
+
+form input[type="text"] {
+    font-size: 1.1rem;
+    padding: 0.1rem;
+}
+
+form input[type="number"] {
+    font-size: 1.1rem;
+    padding: 0.1rem;
+}
+
+form input[type="checkbox"] {
+    height: 50%;
+    accent-color: var(--green);
+}
+
+form h1 {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+form button {
+    place-self: center;
+    padding: .6rem;
+    font-weight: 700;
+    color: white;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    transition-duration: .4s;
+}
+
+#add_button {
+    position: relative;
+    background-color: var(--green);
+}
+
+#cancel:hover {
+    background-color: var(--red);
+}
+
+#cancel {
+    background-color: red;
+}
+
+#add_button:hover {
+    background-color: green;
+}
+
+#add_button:disabled {
+    background-color: var(--dark-grey);
+}
+
+.tooltip {
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.2rem;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: 400;
+    font-size: 1rem;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition-timing-function: ease;
+    transition-duration: 0.4s;
+}
+
+#add_button:disabled:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.button-container {
+    font-size: 1.7rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-container div {
+    cursor: pointer;
+    transition-duration: .4s;
+    -webkit-user-select: none;       
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+
+}
+
+#add:hover {
+    color: var(--green);
+    border-bottom: 4px solid var(--green);
+    margin-bottom: -4px;
+}
+
+#clear:hover {
+    color: red;
+    border-bottom: 4px solid red;
+    margin-bottom: -4px;
+}
+
+.site-title {
+    font-size: 3rem;
+}
+
+.container {
+    padding: 2vh;
+    display: grid;
+    grid-template: repeat(2, 21rem) / repeat(auto-fit, 25rem);
+    grid-auto-rows: 21rem;
+    row-gap: 2vh;
+    place-content: center;
+    overflow-x: hidden;
+} 
+
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 3vw;
+}
+
+
+.book {
+    background-color: white;
+    border-radius: 8px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    box-shadow: 1px 1px 3px var(--shadow-grey);
+    display: grid;
+    grid-template: 30% repeat(4, 1fr) / repeat(2, 1fr);
+    column-gap: 2rem;
+    align-items: center;
+    width: 21rem;
+    height: 17rem;
+}
+
+.book .title {
+    text-align: center;
+    border-bottom: 2px solid var(--dark-grey);
+    font-size: 2rem;
+    font-weight: 700;
+    grid-area: 1 / 1 / 2 / 3;
+    width: 100%;
+}
+
+.book button {
+    font-weight: 700;
+    font-size: 1.5rem;
+    height: 2rem;
+    width: 100%;
+    border-radius: 8px;
+    place-self: center;
+}
+
+.book button:hover {
+    transform: scale(1.05);
+    transition: .4s transform;
+}
+
+.read[data-read="true"] {
+    background-color: var(--light-green);
+    color: var(--green);
+}
+
+.read[data-read="false"] {
+    background-color: var(--shadow-grey);
+    color: var(--dark-grey);
+}
+ 
+.book .read {
+    grid-area: 4 / 1 / 5 / 3;
+}
+
+form .read {
+    grid-area: 5 / 1 / 6 / 3;
+}
+
+.delete {
+    grid-area: 5 / 1 / 6 / 3;
+    background-color: var(--light-red);
+    color: var(--red);
+}
+
+.label {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.text {
+    font-size: 1.3rem;
+}
